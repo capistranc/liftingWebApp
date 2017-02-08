@@ -63,30 +63,45 @@ class OneRepMaxCalculator extends Component {
 
     render() {
         return (
-            <div>
+            <div className='container well'>
                 <form onSubmit={this.handleSubmit}>
                     <label> Weight Lifted  <input type='number' min='1' max='9999' name='weight' onChange={this.handleChange} value={this.state.weight}/></label>
                     <label title='Enter up to 20 reps'>  Reps Performed <input type='number' min='1' max='20' name='reps' onChange={this.handleChange} value={this.state.reps}/> </label>
-                    <button  >Calculate </button> <button onClick={this.handleReset}> Reset </button>
+                    <button className='btn btn-success' >Calculate </button> <button className='btn btn-warning' onClick={this.handleReset}> Reset </button>
 
 
 
 
                 </form> <br />
 
-                <div>
+                <div className='well'>
                     <h3>One Rep Max: <input min='0' max='9999' type='number' value={parseInt(this.state.orm, 10)} /></h3> <br/>
 
-                    55% <input min='0' max='9999' type='number' value={parseInt(this.state.orm*.50, 10)} />
-                    60% <input min='0' max='9999' type='number' value={parseInt(this.state.orm*.55, 10)} />
-                    50% <input min='0' max='9999' type='number' value={parseInt(this.state.orm*.60, 10)} />
-                    65% <input min='0' max='9999' type='number' value={parseInt(this.state.orm*.65, 10)} />
-                    70% <input min='0' max='9999' type='number' value={parseInt(this.state.orm*.70, 10)} />
-                    75% <input min='0' max='9999' type='number' value={parseInt(this.state.orm*.75, 10)} />
-                    80% <input min='0' max='9999' type='number' value={parseInt(this.state.orm*.80, 10)} />
-                    85% <input min='0' max='9999' type='number' value={parseInt(this.state.orm*.85, 10)} />
-                    90% <input min='0' max='9999' type='number' value={parseInt(this.state.orm*.90, 10)} />
-                    95% <input min='0' max='9999' type='number' value={parseInt(this.state.orm*.95, 10)} />
+                    <div className="row">
+                        <div className="col-sm-6">
+
+                            <div>
+                                50% <input min='0' max='9999' type='number' value={parseInt(this.state.orm*.50, 10)} />
+                                55% <input min='0' max='9999' type='number' value={parseInt(this.state.orm*.55, 10)} />
+                            </div>
+                            <div>
+                                60% <input min='0' max='9999' type='number' value={parseInt(this.state.orm*.60, 10)} />
+                                65% <input min='0' max='9999' type='number' value={parseInt(this.state.orm*.65, 10)} />
+                            </div>
+                            <div>
+                                70% <input min='0' max='9999' type='number' value={parseInt(this.state.orm*.70, 10)} />
+                                75% <input min='0' max='9999' type='number' value={parseInt(this.state.orm*.75, 10)} />
+                            </div>
+                            <div>
+                                80% <input min='0' max='9999' type='number' value={parseInt(this.state.orm*.80, 10)} />
+                                85% <input min='0' max='9999' type='number' value={parseInt(this.state.orm*.85, 10)} />
+                            </div>
+                            <div>
+                                90% <input min='0' max='9999' type='number' value={parseInt(this.state.orm*.90, 10)} />
+                                95% <input min='0' max='9999' type='number' value={parseInt(this.state.orm*.95, 10)} />
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         );
