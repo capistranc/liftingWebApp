@@ -1,6 +1,8 @@
 /**
  * Created by chris on 2/7/17.
  */
+/* eslint-disable */
+
 import React, { Component } from 'react';
 
 
@@ -12,7 +14,8 @@ const BryzckiMax = (weight, reps) => { //Conservative
     return parseInt(max, 10);
 };
 
-const LanderMax = (weight, reps) => { //MiddleGround
+
+const LanderMax = (weight, reps) => { //MiddleGround eslint-disable-next-line
     weight = parseInt(weight, 10);
     reps = parseInt(reps, 10);
 
@@ -21,7 +24,7 @@ const LanderMax = (weight, reps) => { //MiddleGround
 }
 
 
-const EpleyMax= (weight, reps) => { //Ambitious
+const EpleyMax= (weight, reps) => { //Ambitious eslint-disable-next-line
     weight = parseInt(weight, 10);
     reps = parseInt(reps, 10);
     var max = weight*reps*.033 + weight;
@@ -68,9 +71,6 @@ class OneRepMaxCalculator extends Component {
                     <label> Weight Lifted  <input type='number' min='1' max='9999' name='weight' onChange={this.handleChange} value={this.state.weight}/></label>
                     <label title='Enter up to 20 reps'>  Reps Performed <input type='number' min='1' max='20' name='reps' onChange={this.handleChange} value={this.state.reps}/> </label>
                     <button className='btn btn-success' >Calculate </button> <button className='btn btn-warning' onClick={this.handleReset}> Reset </button>
-
-
-
 
                 </form> <br />
 
