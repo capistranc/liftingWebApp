@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
-import OneRepMaxCalculator from './Components/OneRepMaxCalculator'
-import ExerciseComponent from './Components/ExerciseComponent'
-import CalendarDay from './Components/CalendarDay'
+import OneRepMaxCalculator from './components/OneRepMaxCalculator'
+import ExerciseComponent from './components/ExerciseComponent'
+import CalendarDay from './components/CalendarDay'
+import StoreTest from './containers/test'
 
 class App extends Component {
     render() {
@@ -10,6 +11,7 @@ class App extends Component {
                 <ExerciseComponent />
                 <OneRepMaxCalculator />
                 <CalendarDay />
+                <StoreTest />
 
             </div>
         );

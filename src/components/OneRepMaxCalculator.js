@@ -75,7 +75,7 @@ class OneRepMaxCalculator extends Component {
                 </form> <br />
 
                 <div className='well'>
-                    <h3>One Rep Max: <input min='0' max='9999' type='number' value={parseInt(this.state.orm, 10)} /></h3> <br/>
+                    <h5>One Rep Max: <input maxLength='2' type='text' value={this.state.orm} /></h5> <br/>
 
                     <div className="row">
                         <div className="col-sm-6">
