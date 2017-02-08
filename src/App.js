@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import OneRepMaxCalculator from './Components/OneRepMaxCalculator'
 import ExerciseComponent from './Components/ExerciseComponent'
-import RoutineCalendar from './Components/RoutineGenerator'
+import CalendarDay from './Components/CalendarDay'
 
 class App extends Component {
     render() {
@@ -9,7 +9,8 @@ class App extends Component {
             <div className="App">
                 <ExerciseComponent />
                 <OneRepMaxCalculator />
-                <RoutineCalendar/>
+                <CalendarDay />
+
             </div>
         );
 

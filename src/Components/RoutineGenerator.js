@@ -4,7 +4,7 @@
 /**
  * Created by chris on 2/7/17.
  */
-import React, { Component } from 'react';
+// import React, { Component } from 'react';
 
 const dayScheme = (sets, reps, percent) => {
     return {
@@ -41,6 +41,7 @@ var generateRoutine = () => {
         for (var dailySplit in exerciseSplit) {
             if (i <= numWorkouts) {
                 var dailyWod = [];
+                var dailyCount = 1;
 
                 if (i % schemaUpdateRate === 1) {
                     schemaCounter++;
@@ -49,8 +50,11 @@ var generateRoutine = () => {
                 var day = exerciseSplit[dailySplit];
 
                 for (var exerciseTemp in day) {
+                    var lift = day[exerciseTemp];
+
                     var currentExercise = {
-                        lift: day[exerciseTemp],
+                        id: dailyCount++,
+                        lift: lift,
                         sets: schema[schemaCounter].sets,
                         reps: schema[schemaCounter].reps,
                         weight: schema[schemaCounter].percent,
@@ -67,36 +71,35 @@ var generateRoutine = () => {
 
         }
     }
-
     return completeRoutine;
 };
 
+export default generateRoutine
 
 
 
-
-class RoutineCalendar extends Component {
-    constructor() {
-        super();
-        this.handleClick = this.handleClick.bind(this);
-
-        this.state = {
-            routine: generateRoutine(),
-        };
-    }
-
-    handleClick(e) {
-        e.preventDefault();
-        console.log(this.state.routine);
-    }
-
-    render() {
-        return (
-            <div className="container">
-                <button className='btn btn-info' onClick={this.handleClick}> Routine</button>
-            </div>
-        );
-    }
-}
-
-export default RoutineCalendar;
+// class RoutineGenerator extends Component {
+//     constructor() {
+//         super();
+//         this.handleClick = this.handleClick.bind(this);
+//
+//         this.state = {
+//             routine: generateRoutine(),
+//         };
+//     }
+//
+//     handleClick(e) {
+//         e.preventDefault();
+//         console.log(this.state.routine);
+//     }
+//
+//     render() {
+//         return (
+//             <div className="container">
+//                 <button className='btn btn-info' onClick={this.handleClick}> Routine</button>
+//             </div>
+//         );
+//     }
+// }
+//
+// export default RoutineGenerator;
