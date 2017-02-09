@@ -81,6 +81,7 @@ class OneRepMaxCalculator extends Component {
                         <div className="col-sm-6">
 
                             <div>
+
                                 50% <input min='0' max='9999' type='number' value={parseInt(this.state.orm*.50, 10)} />
                                 55% <input min='0' max='9999' type='number' value={parseInt(this.state.orm*.55, 10)} />
                             </div>
@@ -95,10 +96,6 @@ class OneRepMaxCalculator extends Component {
                             <div>
                                 80% <input min='0' max='9999' type='number' value={parseInt(this.state.orm*.80, 10)} />
                                 85% <input min='0' max='9999' type='number' value={parseInt(this.state.orm*.85, 10)} />
-                            </div>
-                            <div>
-                                90% <input min='0' max='9999' type='number' value={parseInt(this.state.orm*.90, 10)} />
-                                95% <input min='0' max='9999' type='number' value={parseInt(this.state.orm*.95, 10)} />
                             </div>
                         </div>
                     </div>

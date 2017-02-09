@@ -10,23 +10,6 @@ export const dayScheme = (sets, reps, percent) => {
     }
 };
 
-const Routine = {
-    exercises: [{id: 0, name: 'squat', orm: 345}, {id: 1, name: 'shoulder press', orm: 175},
-        {id: 2, name: 'bench press', orm: 275}, {id: 3, name: 'rows', orm: 275},
-        {id: 4, name: 'deadlift', orm: 305}, {id: 5, name: 'abs', orm: 105}, {id: 6, name: 'curls', orm: 75}],
-    numDays: 3,
-    numWeeks: 7,
-    numWorkouts: 21,
-    numSplit: 2,
-    exerciseSplit: [['squat', 'shoulder press', 'rows', 'bench press', 'abs', 'curls'],
-        ['squat', 'shoulder press', 'deadlift', 'bench press', 'abs', 'curls']],
-    schemaUpdateRate: 3,
-    schema: [dayScheme(3, 10, .60), dayScheme(3, 10, .65),
-        dayScheme(3, 8, .70), dayScheme(3, 8, .75),
-        dayScheme(3, 5, .80), dayScheme(3, 5, .85), dayScheme(1, 1, 1)],
-
-};
-
 export const getMaxes = (exercises) => {
     console.log(exercises);
     var liftMaxes = {};
@@ -39,31 +22,39 @@ export const getMaxes = (exercises) => {
     return liftMaxes;
 };
 
-
-export const generateRoutine = (action) => {
-    console.log(action);
-    const maxes = getMaxes(action.exercises);
-    const numWorkouts = action.numWorkouts;
-    const exerciseSplit = action.exerciseSplit;
-    const schema = action.schema;
-    const schemaUpdateRate = action.schemaUpdateRate;
+export const generateProgram = (rawRoutineData) => {
+    console.log(rawRoutineData);
+    const maxes = getMaxes(rawRoutineData.exercises);
+    const numWorkouts = rawRoutineData.numWorkouts;
+    const exerciseSplit = rawRoutineData.exerciseSplit;
+    const schema = rawRoutineData.schema;
+    const schemaUpdateRate = rawRoutineData.schemaUpdateRate;
     var completeRoutine = [];
     var i = 1;
     var schemaCounter = -1;
+    console.log(numWorkouts);
+    console.log(schema)
 
     while (i <= numWorkouts) {
-        for (var dailySplit in exerciseSplit) {
-            if (i <= numWorkouts) {
+        for (var dailySplit in exerciseSplit)
+        {
+            console.log(dailySplit)
+            if (i <= numWorkouts)
+            {
+                if (i % schemaUpdateRate == 1) {
+                    schemaCounter++;
+                    console.log(i)
+                    console.log(schemaCounter)
+                    console.log(schemaUpdateRate);
+                }
+
                 var dailyWod = [];
                 var dailyCount = 1;
 
-                if (i % schemaUpdateRate === 1) {
-                    schemaCounter++;
-                }
-
                 var day = exerciseSplit[dailySplit];
 
-                for (var exerciseTemp in day) {
+                for (var exerciseTemp in day)
+                {
                     if (day[exerciseTemp] !== undefined) {
                         var lift = day[exerciseTemp];
                         var weightVal = schema[schemaCounter].percent * maxes[lift];
@@ -72,29 +63,30 @@ export const generateRoutine = (action) => {
                             lift: lift,
                             sets: schema[schemaCounter].sets,
                             reps: schema[schemaCounter].reps,
-                            weight: weightVal,
+                            weight: parseInt(weightVal,10),
                         };
                         dailyWod.push(currentExercise);
                     }
-
-                    ++i;
-                    completeRoutine.push(dailyWod);
                 }
+                i++;
+                completeRoutine.push(dailyWod);
+
             }
 
         }
     }
+
     return completeRoutine;
 };
 
 
 //Routine actions
 var numRoutines = 0;
-export const addRoutine = () => {
+export const addRoutine = (routine) => {
     return {
         type: 'ADD_ROUTINE',
         id: numRoutines++,
-        routine: generateRoutine(Routine),
+        routine: routine,
     }
 };
 
@@ -144,4 +136,31 @@ export const deleteExercise = (id) => {
         type: 'DELETE_EXERCISE',
         id
     };
+};
+
+//PROFILE ACTIONS
+export const initProfile = () => {
+    return {
+        type: 'INITIALIZE_PROFILE'
+    }
+};
+
+export const storeProgram = (program) => {
+    return {
+        type: 'STORE_PROGRAM',
+        program
+    }
+};
+
+export const successWorkout = () => {
+    return {
+        type: 'SUCCESSFUL_WORKOUT'
+    }
+};
+
+export const viewWorkout = (dayView) => {
+    return {
+        type: 'VIEW_WORKOUT',
+        dayView
+    }
 };
