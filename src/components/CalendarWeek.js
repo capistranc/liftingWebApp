@@ -11,6 +11,7 @@ export default class CalendarWeek extends React.Component {
 
     render() {
         const {week, onNextClick, onPrevClick, profile} = this.props;
+        console.log(week);
         var view = profile.dayView;
         return (
             <div className='text-center'>
@@ -31,7 +32,7 @@ const DayViewer = (props) => {
     const {wod, view, profile} = props;
     return (
         <div>
-            <p>Viewing Workout {view} of {profile.program.length}
+            <p>Workout {view} of {profile.program.length}
                 {((view-1) == profile.dayOfProgram) && <span>(Current Day)</span> }</p>
 
             <BootstrapTable data={wod}>
