@@ -13,11 +13,11 @@ export default class CalendarDay extends React.Component {
         const {wod, onNextClick, onPrevClick, profile} = this.props;
         return (
             <div>
-                <div className="well">
-                    <p>Viewing Workout {profile.dayView+1} of {profile.program.length}
-                        {(profile.dayView == profile.dayOfProgram) && <span>(Current Day)</span> }</p>
-                    <button onClick={(e) => onPrevClick(profile)}>Prev</button>
-                    <button onClick={(e) => onNextClick(profile)}>Next</button>
+                <div className="well text-center">
+                    <div className='text-center'>Viewing Workout {profile.dayView+1} of {profile.program.length}
+                        {(profile.dayView == profile.dayOfProgram) && <span>(Current Day)</span> }</div>
+                    <button className='btn' onClick={(e) => onPrevClick(profile)}>Prev</button>
+                    <button className='btn' onClick={(e) => onNextClick(profile)}>Next</button>
                 </div>
 
                 <DayViewer {...this.props} />

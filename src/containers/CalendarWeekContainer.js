@@ -38,7 +38,6 @@ const mapStateToProps = (state) => {
     if (state.routines !== []) {
         var program = state.profile.program;
         var routine = state.routines[state.profile.selectedRoutine];
-        console.log(routine)
         const numWeekly = 3;
         // const numWeekly = routine.numWeeklyWorkouts;
 
@@ -47,11 +46,9 @@ const mapStateToProps = (state) => {
 
         const weekView = day - offset;
 
-
-        for (var i = 0; i < numWeekly; i++) {
+        for (let i = 0; i < numWeekly; i++) {
             const formattedDay = dayFormat(program[weekView + i])
             weeklyRoutine.push(formattedDay)
-            console.log(formattedDay);
         }
     }
 

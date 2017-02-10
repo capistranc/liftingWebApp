@@ -2,67 +2,87 @@
  * Created by chris on 2/8/17.
  */
 
-export const dayScheme = (sets, reps, percent) => {
-    return {
-        sets: sets,
-        reps: reps,
-        percent: percent,
-    }
-};
-
 export const getMaxes = (exercises) => {
-    console.log(exercises);
-    var liftMaxes = {};
-    for (var lift in exercises) {
+    // console.log(exercises);
+    let liftMaxes = {};
+    for (let lift in exercises) {
         if (exercises[lift] !== undefined) {
-            const label = exercises[lift].name;
+            const label = exercises[lift].id;
             liftMaxes[label] = exercises[lift].orm;
         }
     }
     return liftMaxes;
 };
 
-export const generateProgram = (rawRoutineData) => {
-    console.log(rawRoutineData);
-    const maxes = getMaxes(rawRoutineData.exercises);
-    const numWorkouts = rawRoutineData.numWorkouts;
-    const exerciseSplit = rawRoutineData.exerciseSplit;
-    const schema = rawRoutineData.schema;
-    const schemaUpdateRate = rawRoutineData.schemaUpdateRate;
-    var completeRoutine = [];
-    var i = 1;
-    var schemaCounter = -1;
-    console.log(numWorkouts);
-    console.log(schema)
 
-    while (i <= numWorkouts) {
-        for (var dailySplit in exerciseSplit)
+/*
+Input: rawRoutineData = {exercises, numDays, numWeeks, nuumWorkouts, numSplit, exerciseSplit,
+strKey,idKey, schema
+
+schema = { primary, secondary, other, stretch, schemaUpdateRate}
+
+output: program = [ workout0, ..., workoutn]
+workout = [exercise0, ... , exercisen]
+exercise = {dayId, id, sets, reps, weight]
+ */
+export const generateProgram = (exercises, routineData) => {
+    console.log(routineData);
+    const maxes = getMaxes(exercises);
+    const {numWorkouts,exerciseSplit, schema, strKey, idKey} = {...routineData};
+
+    const schemaUpdateRate = schema.updateRate;
+
+    let completeRoutine = []; // Will store an array of workoutDays
+    let i = 1;
+    let schemaCounter = -1;
+    // console.log(numWorkouts);
+    // console.log(schema)
+
+    while (i <= numWorkouts) { //iterates over all workouts in routine
+        for (let dailySplit in exerciseSplit) //Alternates between days of routine
         {
-            console.log(dailySplit)
             if (i <= numWorkouts)
             {
-                if (i % schemaUpdateRate == 1) {
+                if (i % schemaUpdateRate === 1) { //updates rep scheme for workout / track weeks
                     schemaCounter++;
-                    console.log(i)
-                    console.log(schemaCounter)
-                    console.log(schemaUpdateRate);
                 }
 
-                var dailyWod = [];
-                var dailyCount = 1;
+                let dailyWod = []; //stores an array of exercises
+                let dailyCount = 1; //tracks
 
-                var day = exerciseSplit[dailySplit];
+                let tempWod = exerciseSplit[dailySplit];  //Array of exerciseId
 
-                for (var exerciseTemp in day)
+                for (let ex in tempWod) //Iterates over exercises in a workout
                 {
-                    if (day[exerciseTemp] !== undefined) {
-                        var lift = day[exerciseTemp];
-                        var weightVal = schema[schemaCounter].percent * maxes[lift];
-                        var currentExercise = {
+                    if (tempWod[ex] !== undefined) {
+                        let exerciseData = tempWod[ex];
+                        let currSchema;
+
+                        switch (exerciseData.class) {
+                            case 1:
+                                currSchema = schema.primary;
+                                break;
+                            case 2:
+                                currSchema = schema.secondary;
+                                break;
+                            case 3:
+                                currSchema = schema.other;
+                                break;
+                            case 4:
+                                currSchema = schema.stretch;
+                                break;
+                            default:
+                                break;
+                        }
+
+                        let weightVal = currSchema[schemaCounter].percent * exerciseData.orm;
+
+                        let currentExercise = {
                             dayId: dailyCount++,
-                            lift: lift,
-                            sets: schema[schemaCounter].sets,
-                            reps: schema[schemaCounter].reps,
+                            exId: exerciseData.id,
+                            lift: '' + exerciseData.name,
+                            sets: currSchema[schemaCounter].sets,
+                            reps: currSchema[schemaCounter].reps,
                             weight: parseInt(weightVal,10),
                         };
                         dailyWod.push(currentExercise);
@@ -70,18 +90,17 @@ export const generateProgram = (rawRoutineData) => {
                 }
                 i++;
                 completeRoutine.push(dailyWod);
-
             }
 
         }
     }
-
+    console.log(completeRoutine)
     return completeRoutine;
 };
 
 
 //Routine actions
-var numRoutines = 0;
+let numRoutines = 0;
 export const addRoutine = (routine) => {
     return {
         type: 'ADD_ROUTINE',
@@ -105,7 +124,7 @@ export const deleteRoutine = (id) => {
 };
 
 ////exercise actions
-var numExercises = 0;
+let numExercises = 0;
 export const addExercise = (name, orm) => {
     return {
         type: 'ADD_EXERCISE',
@@ -115,11 +134,10 @@ export const addExercise = (name, orm) => {
     };
 };
 
-export const editExName = (id, name) => {
+export const editExercise = (id, editData) => {
     return {
-        type: 'EDIT_NAME',
-        id,
-        name
+        type: 'EDIT_EXERCISE',
+        editData,
     };
 };
 

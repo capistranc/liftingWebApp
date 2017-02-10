@@ -15,9 +15,8 @@ class App extends Component {
                 <ExerciseMaxContainer/>
 
                 <StoreTest />
-
-                <CalendarWeekContainer/>
-                {/*<CalendarDayContainer />*/}
+                {/*<CalendarWeekContainer/>*/}
+                <CalendarDayContainer />
 
             </div>
         );
