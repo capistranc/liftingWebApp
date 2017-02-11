@@ -19,25 +19,25 @@ export default class ExerciseMaxes extends React.Component {
     }
 
     handleSubmit = (values) => {
+
         if (values.exercise !== undefined) {
             this.setState({exerciseId: values.exercise});
 
         }
         if (values.weight && values.reps) {
-            this.setState({orm: formulaA(values.weight,values.reps)} );
+            this.setState({orm: formulaC(values.weight,values.reps)} );
         }
     };
 
 
     render() {
         const {handleUpdate, exercises} = this.props;
+
         return (
             <div>
                 <ExerciseMaxForm onSubmit={this.handleSubmit} {...this.props}/>
-                <div className="row">
                     <CalculatorViewer {...this.state} />
                     <MaxesView {...{exercises: exercises}} />
-                </div>
                 <form onSubmit={(e) => handleUpdate(e,this.state.exerciseId, this.state.orm)}>
                     <button type='submit'>Update 1RM</button>
 

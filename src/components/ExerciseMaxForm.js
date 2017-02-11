@@ -45,6 +45,7 @@ let ExerciseMaxForm = (props) => {
     }
     return (
         <form onSubmit={handleSubmit}>
+
             <Field name="reps" type="number"
                    component={renderField} label="Reps:"
                    validate={[ required, number, minValue1, maxValue20 ]}
@@ -61,7 +62,7 @@ let ExerciseMaxForm = (props) => {
             </Field>
 
             <div>
-                <button type="submit" disabled={submitting}>Submit</button>
+                <button type="click" disabled={submitting}>Submit</button>
                 <button type="button" disabled={pristine || submitting} onClick={reset}>Clear Values</button>
             </div>
         </form>

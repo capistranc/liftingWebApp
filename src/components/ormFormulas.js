@@ -2,6 +2,8 @@
  * Created by chris on 2/8/17.
  */
 export const formulaC = (weight, reps) => { //BryzckiMax: Conservative
+    console.log(weight, reps);
+
     weight = parseInt(weight,10);
     reps = parseInt(reps,10);
     var max = weight / (1.0278 - (0.0278*reps));
@@ -21,7 +23,9 @@ export const formulaB = (weight, reps) => { //LanderMax: MiddleGround
  export const formulaA= (weight, reps) => { //EpleyMax: Ambitious
     weight = parseInt(weight, 10);
     reps = parseInt(reps, 10);
-    var max = weight*reps*.033 + weight;
+
+     if (reps != 0)
+        var max = weight*reps*.033 + weight;
 
     return parseInt(max, 10);
 };

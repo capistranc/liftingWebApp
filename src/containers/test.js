@@ -11,6 +11,7 @@ let storeTest = ({ exercises, dispatch, routine }) => {
     let handleSubmit = e => {
         e.preventDefault();
         dispatch(initProfile());
+        console.log(exercises);
         dispatch(storeProgram(generateProgram(exercises, routine)));
     };
     return (

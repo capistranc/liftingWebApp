@@ -18,9 +18,10 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        handleSubmit: (e, values) => {
-
-        },
+        // handleSubmit: (e, values) => {
+        //     e.preventDefault();
+        //
+        // },
         handleUpdate: (e,id, weight) => {
             e.preventDefault();
             dispatch(updateORM(parseInt(id,10),parseInt(weight,10)))},

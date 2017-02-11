@@ -26,8 +26,9 @@ workout = [exercise0, ... , exercisen]
 exercise = {dayId, id, sets, reps, weight]
  */
 export const generateProgram = (exercises, routineData) => {
-    console.log(routineData);
-    const maxes = getMaxes(exercises);
+    // console.log(routineData);
+    console.log(exercises);
+
     const {numWorkouts,exerciseSplit, schema, strKey, idKey} = {...routineData};
 
     const schemaUpdateRate = schema.updateRate;
@@ -50,12 +51,16 @@ export const generateProgram = (exercises, routineData) => {
                 let dailyWod = []; //stores an array of exercises
                 let dailyCount = 1; //tracks
 
-                let tempWod = exerciseSplit[dailySplit];  //Array of exerciseId
+                let tempWod = exerciseSplit[dailySplit];  //Array of exercises from routine
 
                 for (let ex in tempWod) //Iterates over exercises in a workout
                 {
                     if (tempWod[ex] !== undefined) {
-                        let exerciseData = tempWod[ex];
+                        let temp = tempWod[ex];
+
+                        let exerciseData = {...temp, orm: exercises[temp.id].orm};
+
+
                         let currSchema;
 
                         switch (exerciseData.class) {
@@ -94,7 +99,7 @@ export const generateProgram = (exercises, routineData) => {
 
         }
     }
-    console.log(completeRoutine)
+    // console.log(completeRoutine)
     return completeRoutine;
 };
 
