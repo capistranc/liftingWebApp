@@ -2,7 +2,7 @@
  * Created by chris on 2/8/17.
  */
 import React from 'react';
-import ExerciseMaxes from '../components/ExerciseMaxes'
+import ExerciseMaxes from '../components/Exercise Max Form/ExerciseMaxes'
 import {updateORM} from '../actions'
 import { connect } from 'react-redux'
 

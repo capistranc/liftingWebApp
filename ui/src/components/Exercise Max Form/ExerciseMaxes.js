@@ -4,9 +4,9 @@
 import React from 'react';
 import ExerciseMaxForm  from './ExerciseMaxForm'
 import OneRepMaxForm from './OneRepMaxForm'
-import {formulaA,formulaB,formulaC} from '../components/ormFormulas'
-import CalculatorViewer from '../components/calculatorViewer'
-import MaxesView from '../components/maxesView'
+import {formulaA,formulaB,formulaC} from './ormFormulas'
+import CalculatorViewer from './calculatorViewer'
+import MaxesView from './maxesView'
 
 
 export default class ExerciseMaxes extends React.Component {

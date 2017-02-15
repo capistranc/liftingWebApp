@@ -1,7 +1,7 @@
 /**
  * Created by chris on 2/9/17.
  */
-
+const MAX_WEEKS_ROUTINE = 12;
 const PRIMARY_LIFT = 1;
 const SECONDARY_LIFT = 2;
 const OTHER = 3;
@@ -44,7 +44,7 @@ const strKey = (exercises) => {
 const exerciseSplitConverter = (exercises, split) => {
     let enumExSplit = [];
     let key = idKey(exercises);
-    console.log(key)
+    console.log(key);
 
     for (let day in split) {
         let dayValue = split[day];
@@ -76,4 +76,56 @@ export const initRoutine = {
         other: [],
         stretch: [],
         updateRate: 3, },
+};
+
+export const initRoutine2 = {
+    exercises: initExercises,
+    numDays: 3,
+    numWeeks: 7,
+    numWorkouts: 21,
+    numSplit: 2,
+    exerciseSplit: exerciseSplitConverter(initExercises, exerciseSplitString),
+    idKey: idKey(initExercises),
+    strKey: strKey(initExercises),
+    schema: {primary: [dayScheme(3, 10, .60), dayScheme(3, 10, .65),
+        dayScheme(3, 8, .70), dayScheme(3, 8, .75),
+        dayScheme(3, 5, .80), dayScheme(3, 5, .85), dayScheme(3, 6, .65)],
+        secondary: [dayScheme(3, 12, .60), dayScheme(3, 12, .60),
+            dayScheme(3, 10, .65), dayScheme(3, 10, .65),
+            dayScheme(3, 8, .7), dayScheme(3, 8, .75), dayScheme(3, 12, .55)],
+        other: [],
+        stretch: [],
+        updateRate: 3, },
+};
+const ex1 = {
+    id: 0,
+    sets: {
+        weightCoeff: 5,
+        reps: 5,
+    },
+};
+const ex2 = {
+    id: 1,
+    sets: [
+        {
+            weightCoeff: .5,
+            reps: 5,
+        },
+        {
+            weightCoeff: .7,
+            reps: 4,
+        }
+    ],
+};
+
+const day = {
+    note: 'text',
+    restPeriod: 1, //
+    exercises: [ex1, ex2],
+};
+
+const splitSchemaGenerator = (split,) => {
+    for (var i = 0; i < 5; i++) {
+
+    }
 };
