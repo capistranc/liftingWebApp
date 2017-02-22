@@ -25,7 +25,9 @@ const calculatorViewer = props => {
                         80% <input min='0' max='9999' type='number' value={parseInt(orm*.80, 10)} />
                         85% <input min='0' max='9999' type='number' value={parseInt(orm*.85, 10)} />
                     </div>
+
             </div>
+
         </div>
     );
 };

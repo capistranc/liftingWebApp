@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import { RegistrationForm } from 'react-stormpath';
+
 class RegistrationPage extends Component {
     onFormSubmit(e, next) {
         // e.data will contain the data mapped from your form.
