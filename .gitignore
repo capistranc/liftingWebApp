@@ -29,3 +29,4 @@ api/.DS_Store
 api/.env
 api/npm-debug.log
 api/node_modules
+api/public/

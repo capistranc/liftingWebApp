@@ -6,7 +6,7 @@ const SECONDARY_LIFT = 2;
 const OTHER = 3;
 const STRETCH = 4;
 
-import {initExercises} from './initData'
+import {initExercises} from '../initData/initData'
 
 
 const exercise = (state, action) => {

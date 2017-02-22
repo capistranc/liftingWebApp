@@ -8,7 +8,7 @@ const initialState = {
     age: 24,
     program: [],
     dateLog: [],
-    dayOfProgram: 0,
+    dayOfProgram: 5,
     dayView: 0,
     selectedRoutine: 0,
     streak: 0

@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 // import ExerciseComponent from './components/ExerciseComponent'
-import CalendarDayContainer from './containers/CalendarDayContainer'
-import StoreTest from './containers/test'
-import ExerciseMaxContainer from './containers/ExerciseMaxContainer'
-import CalendarWeekContainer from './containers/CalendarWeekContainer'
+import CalendarDayContainer from '../containers/CalendarDayContainer'
+import StoreTest from '../containers/test'
+import ExerciseMaxContainer from '../containers/ExerciseMaxContainer'
+import CalendarWeekContainer from '../containers/CalendarWeekContainer'
 
 
 

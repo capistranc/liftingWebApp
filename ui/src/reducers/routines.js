@@ -1,7 +1,7 @@
 /**
  * Created by chris on 2/8/17.
  */
-import {initRoutine} from './initData'
+import {initRoutine} from '../initData/initData'
 
 const routine = (state, action) => {
     switch (action.type) {
